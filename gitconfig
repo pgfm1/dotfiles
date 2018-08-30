@@ -1,0 +1,19 @@
+[user]
+    email = eidolonpg@gmail.com
+    name = eidolon
+[alias]
+    ll = log --oneline --decorate --graph
+    ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+    ld = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
+    fl = log -u
+    dl = "!git ll -1"
+    la = "!git config -l | grep alias | cut -c 7-"
+    lt = describe --tags --abbrev=0
+    co = checkout
+    st = status -s
+[push]
+    default = simple
+[credential]
+    helper = cache --timeout=3600
+[pager]
+	branch = false
