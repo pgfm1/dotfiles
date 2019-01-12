@@ -14,6 +14,11 @@ Plug 'ap/vim-buftabline'
 Plug 'wellle/targets.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-speeddating'
+
+" Org Mode
+Plug 'jceb/vim-orgmode'
 
 " Rust-specific plugins
 Plug 'rust-lang/rust.vim'  " Core Rust support.
@@ -24,6 +29,9 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
     \ }
+
+" Git management
+Plug 'tpope/vim-fugitive'
 
 call plug#end()
 
@@ -160,3 +168,9 @@ let g:LanguageClient_serverCommands = {
 " }}
 
 let g:rustfmt_autosave = 1
+
+" === Org Mode Configuration === {{
+autocmd FileType org setlocal tw=120
+let g:org_agenda_files = ['~/todo/2018/*.org']
+" }}
+
