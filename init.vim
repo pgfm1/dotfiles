@@ -19,6 +19,9 @@ Plug 'tpope/vim-speeddating'
 " Org Mode
 Plug 'jceb/vim-orgmode'
 
+" NERDTree
+Plug 'scrooloose/nerdtree'
+
 " Rust-specific plugins
 Plug 'rust-lang/rust.vim'  " Core Rust support.
 Plug 'cespare/vim-toml'    " For TOML (Cargo build) file support
@@ -123,6 +126,7 @@ nnoremap <leader>s :up<cr>
 nnoremap <leader>bp :bp<cr>
 nnoremap <leader>bn :bn<cr>
 nnoremap <leader>bd :bd<cr>
+map <C-m> :NERDTreeToggle<CR>
 " }}
 
 " === Scala Configuration === {{
@@ -158,17 +162,9 @@ let g:buftabline_numbers = 1
 let g:buftabline_indicators = 1
 " }}
 
-" === Language Server Configuration === {{
-let g:LanguageClient_serverCommands = {
-    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
-    \ }
-" }}
-
-let g:rustfmt_autosave = 1
-
 " === Org Mode Configuration === {{
 autocmd FileType org setlocal tw=120
-let g:org_agenda_files = ['~/todo/2018/*.org']
+let g:org_agenda_files = ['~/todo/2019/*.org']
 " }}
 
 " === Language Server Configuration === {{
@@ -204,14 +200,14 @@ nmap <silent> ]c <Plug>(coc-diagnostic-next)
 
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
-" nmap <silent> gy <Plug>(coc-type-definition)
-" nmap <silent> gi <Plug>(coc-implementation)
-" nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
 
 " Code actions
 " nmap <leader>a  <Plug>(coc-codeaction-selected)
 " vmap <leader>a  <Plug>(coc-codeaction-selected)
-" nmap <leader>ac <Plug>(coc-codeaction)
+nmap <leader>ac <Plug>(coc-codeaction)
 
 " Remap for do action format
 " THIS BREAKS REVERSE FORWARD TO LETTER
@@ -229,7 +225,7 @@ function! s:show_documentation()
 endfunction
 
 " Highlight symbol under cursor on CursorHold
-" autocmd CursorHold * silent call CocActionAsync('highlight')
+autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)

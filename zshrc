@@ -2,7 +2,7 @@ export ZSH=/home/eidolon/.oh-my-zsh
 
 ZSH_THEME="spaceship"
 
-plugins=(vi-mode gitfast zsh-syntax-highlighting)
+plugins=(vi-mode gitfast)
 
 # Configuration for Vim Mode!
 # This enables command line behavior that mimics Vim.
@@ -76,5 +76,9 @@ export PATH="$PATH:$HOME/.rvm/bin"
 
 export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
 
-# This _must_ be at the end of the file:
+# Haskell
+source /home/eidolon/.ghcup/env
+
 source ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
