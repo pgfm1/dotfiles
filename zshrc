@@ -51,8 +51,10 @@ alias vim='nvim'
 setopt rmstarsilent
 
 # Configure Spaceship
-export SPACESHIP_RUBY_SHOW=false
-export SPACESHIP_NODE_SHOW=false
+export SPACESHIP_TIME_SHOW=true
+export SPACESHIP_VI_MODE_SHOW=false
+export SPACESHIP_RUBY_SHOW=true
+export SPACESHIP_NODE_SHOW=true
 export SPACESHIP_VENV_SHOW=false
 export SPACESHIP_KUBECONTEXT_SHOW=false
 export SPACESHIP_BATTERY_SHOW=false

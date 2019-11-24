@@ -1,7 +1,7 @@
 call plug#begin('~/.local/share/nvim/plugged')
 
 " Available color themes.
-Plug 'tyrannicaltoucan/vim-quantum'
+" Plug 'tyrannicaltoucan/vim-quantum'
 Plug 'morhetz/gruvbox'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf' }
@@ -79,6 +79,7 @@ set showmatch         " Show matching parens
 set lazyredraw        " redraw only when necessary, hopefully more efficient.
 set pastetoggle=<F2>  " Cheap way to paste toggle
 set completeopt-=preview " Disable the preview window, usually annoying.
+set colorcolumn=100   " Right margin display
 " }}
 
 " === Indentation === {{
@@ -127,6 +128,7 @@ nnoremap <leader>bp :bp<cr>
 nnoremap <leader>bn :bn<cr>
 nnoremap <leader>bd :bd<cr>
 map <C-m> :NERDTreeToggle<CR>
+let g:NERDTreeWinPos = "right"
 " }}
 
 " === Scala Configuration === {{
@@ -215,6 +217,9 @@ nmap <leader>ac <Plug>(coc-codeaction)
 
 " Use K for show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+" Use F for auto-formatting with ScalaFmt
+nnoremap <silent> F :call CocAction('format')<CR>
 
 function! s:show_documentation()
   if &filetype == 'vim'

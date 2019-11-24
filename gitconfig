@@ -17,3 +17,5 @@
     helper = cache --timeout=3600
 [pager]
 	branch = false
+[core]
+	excludesfile = /home/eidolon/.gitignore
