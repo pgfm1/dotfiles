@@ -4,6 +4,8 @@ ZSH_THEME="spaceship"
 
 plugins=(vi-mode gitfast)
 
+export TERMINAL="alacritty"
+
 # Configuration for Vim Mode!
 # This enables command line behavior that mimics Vim.
 bindkey -v
@@ -23,6 +25,8 @@ export GRADLE_HOME=/home/eidolon/opt/gradle
 export MAVEN_HOME=/home/eidolon/opt/maven
 export M2_HOME=/home/eidolon/opt/maven
 export SCALA_HOME=/home/eidolon/opt/scala
+export GO_HOME=/home/eidolon/opt/go
+export ZIG_HOME=/home/eidolon/opt/zig
 
 # Configure my default paths - these should include custom installs and my home bin.
 export PATH="/home/eidolon/.cargo/bin:$PATH"
@@ -31,12 +35,16 @@ export PATH=$SBT_HOME/bin:$PATH
 export PATH=$M2_HOME/bin/:$PATH
 export PATH=$SCALA_HOME/bin:$PATH
 export PATH=$JAVA_HOME/bin:$PATH
+export PATH=/home/eidolon/go/bin:$PATH
 export PATH=/home/eidolon/.linkerd2/bin:$PATH
 export PATH="/home/eidolon/bin:$PATH"
 
+# Nix setup
+source /home/eidolon/.nix-profile/etc/profile.d/nix.sh
+
 source $ZSH/oh-my-zsh.sh
 export LANG=en_US.UTF-8
-export EDITOR="vim"
+export EDITOR="nvim"
 
 # Bring these back if not using Vim mode.
 #bindkey "^f" forward-word
@@ -84,3 +92,4 @@ source /home/eidolon/.ghcup/env
 source ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+if [ -e /home/eidolon/.nix-profile/etc/profile.d/nix.sh ]; then . /home/eidolon/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
