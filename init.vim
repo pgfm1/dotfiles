@@ -75,8 +75,8 @@ let maplocalleader=","
 set termguicolors
 set t_Co=256
 set background=dark
-let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+"let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+"let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 colorscheme gruvbox
 let g:rainbow_active = 1
 " }}
@@ -97,7 +97,6 @@ set hidden            " Hide buffers
 set encoding=utf-8    " Always use UTF-8 explicitly
 set number            " Show line numbers by default
 set cursorline        " Highlight the current line
-set noshowmode        " Hide show-mode, this is for lightline
 set showcmd           " Display incomplete commands at the bottom
 set noerrorbells      " ... we just don't like beeping
 set visualbell        " Flash rather than beep
@@ -147,6 +146,9 @@ nmap ; :Buffers<CR>
 " Press Ctrl+P to show a list of files (+ fuzzy search)
 nmap <C-p> :Files<CR>
 
+" Press <leader> + f to use ripgrep for search
+nmap <leader>f :Rg<space>
+
 " }}
 
 " === Other Key Mappings === {{
@@ -158,10 +160,13 @@ nnoremap <leader>bd :bd<cr>
 " }}
 
 " === Scala Configuration === {{
-au BufNewFile,BufRead *.scala set filetype=scala
-au BufNewFile,BufRead *.sbt   set filetype=scala
+au BufNewFile,BufRead *.scala      set filetype=scala
+au BufNewFile,BufRead *.sbt,*.sc   set filetype=scala
 autocmd FileType scala        setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType sbt          setlocal shiftwidth=2 tabstop=2 softtabstop=2
+
+" CoC Configuration, for metals.
+autocmd FileType json syntax match Comment +\/\/.\+$+
 " }}
 
 " === netrw === {{
@@ -183,9 +188,21 @@ let g:buftabline_numbers = 1
 let g:buftabline_indicators = 1
 " }}
 
-" === Language Server Configuration === {{
-" ~/.vimrc
-" Configuration for coc.nvim
+" === floaterm Configuration === {{
+let g:floaterm_keymap_new    = '<leader>tc'
+let g:floaterm_keymap_prev   = '<leader>tp'
+let g:floaterm_keymap_next   = '<leader>tn'
+let g:floaterm_keymap_toggle = '<leader>tt'
+let g:floaterm_width = 0.8
+let g:floaterm_height = 0.8
+let g:floaterm_gitcommit = 'split'
+" }}
+
+" =============================================================================
+" LSP
+" =============================================================================
+
+" === Language Server Configuration (Metals) === {{
 
 " Smaller updatetime for CursorHold & CursorHoldI
 set updatetime=300
@@ -196,7 +213,7 @@ set shortmess+=c
 " always show signcolumns
 set signcolumn=yes
 
-" Some server have issues with backup files, see #649
+" Some server have issues with backup files.
 set nobackup
 set nowritebackup
 
@@ -225,9 +242,9 @@ inoremap <silent><expr> <c-space> coc#refresh()
 " position. Coc only does snippet and additional edit on confirm.
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
-" Use `[c` and `]c` to navigate diagnostics
-nmap <silent> [c <Plug>(coc-diagnostic-prev)
-nmap <silent> ]c <Plug>(coc-diagnostic-next)
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
@@ -256,8 +273,8 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 nmap <leader>rn <Plug>(coc-rename)
 
 " Remap for format selected region
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
+vmap <leader>=  <Plug>(coc-format-selected)
+nmap <leader>=  <Plug>(coc-format-selected)
 
 augroup mygroup
   autocmd!
@@ -267,13 +284,10 @@ augroup mygroup
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
 
-" Remap for do codeAction of selected region, ex: `<leader>aap` for current 
-" paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
-
 " Remap for do codeAction of current line
-nmap <leader>ac  <Plug>(coc-codeaction)
+xmap <leader>a  <Plug>(coc-codeaction-line)
+nmap <leader>a  <Plug>(coc-codeaction-line)
+
 " Fix autofix problem of current line
 nmap <leader>qf  <Plug>(coc-fix-current)
 
@@ -283,9 +297,9 @@ command! -nargs=0 Format :call CocAction('format')
 " Use `:Fold` to fold current buffer
 command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
-" Add status line support, for integration with other plugin, checkout 
-" `:h coc-status`
-"set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+" Trigger for code actions
+" Make sure `"codeLens.enable": true` is set in your coc config
+nnoremap <leader>cl :<C-u>call CocActionAsync('codeLensAction')<CR>
 
 " Show all diagnostics
 nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
@@ -311,19 +325,12 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
 
 " Toggle panel with Tree Views
 nnoremap <silent> <space>t :<C-u>CocCommand metals.tvp<CR>
+" Toggle Tree View 'metalsPackages'
+nnoremap <silent> <space>tp :<C-u>CocCommand metals.tvp metalsPackages<CR>
 " Toggle Tree View 'metalsBuild'
 nnoremap <silent> <space>tb :<C-u>CocCommand metals.tvp metalsBuild<CR>
 " Toggle Tree View 'metalsCompile'
 nnoremap <silent> <space>tc :<C-u>CocCommand metals.tvp metalsCompile<CR>
 " Reveal current current class (trait or object) in Tree View 'metalsBuild'
 nnoremap <silent> <space>tf :<C-u>CocCommand metals.revealInTreeView metalsBuild<CR>
-" }}
-
-" === floaterm Configuration === {{
-let g:floaterm_keymap_new    = '<leader>tc'
-let g:floaterm_keymap_prev   = '<leader>tp'
-let g:floaterm_keymap_next   = '<leader>tn'
-let g:floaterm_keymap_toggle = '<leader>tt'
-let g:floaterm_width = 0.8
-let g:floaterm_height = 0.8
 " }}
