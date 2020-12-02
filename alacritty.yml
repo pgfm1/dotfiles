@@ -8,10 +8,6 @@ window:
     columns: 0
     lines: 0
 
-  #position:
-  #  x: 0
-  #  y: 0
-  
   padding:
     x: 0
     y: 0
@@ -32,12 +28,6 @@ window:
   #   - Fullscreen
   startup_mode: Windowed
 
-  # Window title
-  #title: Alacritty
-
-  # Window class (Linux only):
-  #class: Alacritty
-
 scrolling:
   # Maximum number of lines in the scrollback buffer.
   # Specifying '0' will disable scrolling.
@@ -46,21 +36,6 @@ scrolling:
   # Number of lines the viewport will move for every line scrolled when
   # scrollback is enabled (history > 0).
   multiplier: 3
-
-  # Faux Scrolling
-  #
-  # The `faux_multiplier` setting controls the number of lines the terminal
-  # should scroll when the alternate screen buffer is active. This is used
-  # to allow mouse scrolling for applications like `man`.
-  #
-  # Specifying `0` will disable faux scrolling.
-  # faux_multiplier: 3
-
-  # Scroll to the bottom when new text is written to the terminal.
-  #auto_scroll: false # note: deprecated
-
-# Spaces per Tab (changes require restart)
-# tabspaces: 4
 
 # Font configuration (changes require restart)
 font:
@@ -76,7 +51,7 @@ font:
     family: 'Iosevka Term'
     style: Italic
 
-  size: 11.0
+  size: 10.0
 
   offset:
     x: 0
@@ -92,7 +67,7 @@ font:
 # If `true`, bold text is drawn using the bright color variants.
 draw_bold_text_with_bright_colors: true
 
-# Colors (Tomorrow Night Bright)
+# Colors
 colors:
   # Default colors
   primary:

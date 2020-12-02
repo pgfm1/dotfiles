@@ -30,6 +30,9 @@ Plug 'derekwyatt/vim-scala', { 'for': ['scala'] }
 " Neuron Zettelkasten
 Plug 'fiatjaf/neuron.vim'
 
+" Rust Language Support
+Plug 'rust-lang/rust.vim'
+
 " =============================================================================
 " General support
 " =============================================================================
@@ -78,7 +81,6 @@ set background=dark
 "let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 "let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 colorscheme gruvbox
-let g:rainbow_active = 1
 " }}
 
 " === History and Undo Levels === {{
@@ -167,6 +169,10 @@ autocmd FileType sbt          setlocal shiftwidth=2 tabstop=2 softtabstop=2
 
 " CoC Configuration, for metals.
 autocmd FileType json syntax match Comment +\/\/.\+$+
+" }}
+
+" === Rust Configuration === {{
+let g:rustfmt_autosave = 1
 " }}
 
 " === netrw === {{

@@ -18,4 +18,4 @@
 [pager]
 	branch = false
 [core]
-	excludesfile = /home/eidolon/.gitignore
+	excludesFile = ~/.gitignore
