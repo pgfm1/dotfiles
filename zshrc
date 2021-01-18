@@ -29,6 +29,7 @@ export SCALA_HOME="$HOME/opt/scala"
 export SBT_HOME="$HOME/opt/sbt"
 export GO_HOME="$HOME/opt/go"
 export COURSIER_INSTALL="$HOME/.local/share/coursier/bin"
+export RACKET_HOME="$HOME/opt/racket"
 
 # Path Setup
 export PATH="$HOME/.cargo/bin:$PATH"
@@ -37,6 +38,7 @@ export PATH="$JAVA_HOME/bin:$PATH"
 export PATH="$SCALA_HOME/bin:$PATH"
 export PATH="$COURSIER_INSTALL:$PATH"
 export PATH="$GO_HOME/bin:$PATH"
+export PATH="$RACKET_HOME/bin:$PATH"
 export PATH="$HOME/bin:$PATH"
 
 # Aliases

@@ -33,6 +33,15 @@ Plug 'fiatjaf/neuron.vim'
 " Rust Language Support
 Plug 'rust-lang/rust.vim'
 
+" Janet Support
+Plug 'bakpakin/janet.vim'
+
+" Racket Support
+Plug 'wlangstroth/vim-racket'
+
+" Generalized support for LISPs (Clojure, Racket, Janet)
+Plug 'Olical/conjure', {'tag': 'v4.12.0'}
+
 " =============================================================================
 " General support
 " =============================================================================
@@ -62,15 +71,21 @@ Plug 'wellle/targets.vim'
 " Provides a buffer list in the tab line.
 Plug 'ap/vim-buftabline'
 
+" Lightline
+Plug 'itchyny/lightline.vim'
+
 " Available color themes.
 " Plug 'tyrannicaltoucan/vim-quantum'
 Plug 'morhetz/gruvbox'
+Plug 'joshdick/onedark.vim'
+Plug 'sainnhe/sonokai'
 
 call plug#end()
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 filetype plugin indent on
+syntax on
 let mapleader=","
 let maplocalleader=","
 
@@ -78,9 +93,26 @@ let maplocalleader=","
 set termguicolors
 set t_Co=256
 set background=dark
-"let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-"let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-colorscheme gruvbox
+" onedark
+let g:onedark_terminal_italics = 1
+colorscheme onedark
+
+" sonokai
+let g:sonokai_style = 'shusia'
+let g:sonokai_enable_italic = 1
+let g:sonokai_disable_italic_comment = 0
+"colorscheme sonokai
+
+" gruvbox
+let g:gruvbox_italic = 1
+"colorscheme gruvbox
+
+" paige (light theme, the dark one doesn't work well)
+"colorscheme paige
+
+"let g:lightline = {
+"  \ 'colorscheme': 'onedark',
+"  \ }
 " }}
 
 " === History and Undo Levels === {{
@@ -91,7 +123,6 @@ set undodir=~/.config/nvim/undo
 " }}
 
 " === Assorted Core Settings === {{
-syntax on
 set noswapfile
 set nocompatible
 set modelines=0
@@ -151,6 +182,11 @@ nmap <C-p> :Files<CR>
 " Press <leader> + f to use ripgrep for search
 nmap <leader>f :Rg<space>
 
+" }}
+
+" === Mundo (Undo Tree) Configuration and Bindings === {{
+let g:mundo_right = 1
+nnoremap <F5> :MundoToggle<CR>
 " }}
 
 " === Other Key Mappings === {{
