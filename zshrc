@@ -4,12 +4,16 @@ export ZSH=$HOME/.oh-my-zsh
 # =============================================================================
 ZSH_THEME="spaceship"
 export SPACESHIP_TIME_SHOW=true
-export SPACESHIP_VI_MODE_SHOW=false
+export SPACESHIP_VI_MODE_SHOW=true
 export SPACESHIP_BATTERY_SHOW=false
 
 # Configuration for OhMyZSH plugins
 # =============================================================================
-plugins=(vi-mode gitfast)
+plugins=(gitfast vi-mode)
+
+# Configuration for OhMyZSH Vim Mode
+# =============================================================================
+export VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
 
 # Basic environmental setup. Defaults and miscellaneous settings.
 # =============================================================================
@@ -28,18 +32,9 @@ export HISTCONTROL=ignoreboth:erasedups
 #
 # https://github.com/zsh-users/zsh-syntax-highlighting.git
 # The highlighting module can be updated via `git pull`
-source ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-# Configuration for OhMyZSH Vim Mode
-# =============================================================================
-# Note that '^' in this case refers to 'Ctrl'
-bindkey -v
-bindkey '^p' up-history
-bindkey '^n' down-history
-bindkey '^h' backward-delete-char
-bindkey '^w' backward-kill-word
-bindkey '^r' history-incremental-search-backward
-export KEYTIMEOUT=1
+#source ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# Note: this is breaking vi-mode `vv` to edit the current line. vi-mode working
+# properly has higher-value than syntax highlighting at this point.
 
 # Environment variables for key development environments
 # =============================================================================
