@@ -18,6 +18,7 @@ My workflow is an i3-based, keyboard-centric, single-monitor (2k, 25") affair.
 | Email | aerc + protonmail |
 | Browser | firefox |
 | Clipboard | clipmenu |
+| Gemini Browser | lagrange |
 
 ## Some Commands
 
