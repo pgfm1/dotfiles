@@ -21,15 +21,15 @@ mkdir ~/bin
 ```
 
 Finally checkout my dotfiles into the home directory and establish the standard
-symlinks (tmux omitted as I'm not using it right now):
+symlinks:
 
 ```bash
-git clone git@github.com:pgfm1/dotfiles.git
-ln -s $HOME/dotfiles/zshrc $HOME/.zshrc
-ln -s $HOME/dotfiles/init.vim $HOME/.config/nvim/init.vim
-ln -s $HOME/dotfiles/alacritty.yml $HOME/.config/alacritty/alacritty.yml
-ln -s $HOME/dotfiles/gitconfig $HOME/.gitconfig
+git clone https://github.com/pgfm1/dotfiles.git
+cd dotfiles
+./link.sh
 ```
+
+See [link.sh](../link.sh) for symlinks.
 
 ## SSH Key Setup
 
