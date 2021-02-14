@@ -42,6 +42,10 @@ Plug 'wlangstroth/vim-racket'
 " Generalized support for LISPs (Clojure, Racket, Janet)
 Plug 'Olical/conjure', {'tag': 'v4.12.0'}
 
+" Zig Language Support
+" Please see :CocConfig for details on ZLS, the Zig Language Server.
+Plug 'ziglang/zig.vim'
+
 " =============================================================================
 " General support
 " =============================================================================

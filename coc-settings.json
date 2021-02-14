@@ -1,0 +1,10 @@
+{
+    "metals.scalafmtConfigPath": ".scalafmt.conf",
+    "coc.preferences.formatOnSaveFiletypes": ["scala"],
+    "languageserver": {
+        "zls" : {
+            "command": "/home/pfm/opt/zls/zls",
+            "filetypes": ["zig"]
+        }
+    }
+}
