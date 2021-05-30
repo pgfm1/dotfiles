@@ -8,6 +8,8 @@ call plug#begin('~/.local/share/nvim/plugged')
 " Note:
 " - :CocInstall coc-metals
 " - :CocInstall coc-json
+" - :CocInstall coc-jedi
+" - :CocInstall coc-conjure
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 
 " FZF Fuzzy Search
@@ -28,7 +30,10 @@ Plug 'voldikss/vim-floaterm'
 Plug 'derekwyatt/vim-scala', { 'for': ['scala'] }
 
 " Neuron Zettelkasten
-Plug 'fiatjaf/neuron.vim'
+"Plug 'fiatjaf/neuron.vim'
+" Needed for Neuron development, but currently Neuron and this plugin are
+" dead/broken.
+"Plug 'chiefnoah/neuron-v2.vim'
 
 " Rust Language Support
 Plug 'rust-lang/rust.vim'
@@ -49,9 +54,6 @@ Plug 'ziglang/zig.vim'
 " =============================================================================
 " General support
 " =============================================================================
-
-" Visualizer for the Vim undo tree.
-Plug 'simnalamburt/vim-mundo'
 
 " Delete, change, and add surroundings like ", ', (, etc.
 Plug 'tpope/vim-surround'
@@ -188,11 +190,6 @@ nmap <leader>f :Rg<space>
 
 " }}
 
-" === Mundo (Undo Tree) Configuration and Bindings === {{
-let g:mundo_right = 1
-nnoremap <F5> :MundoToggle<CR>
-" }}
-
 " === Other Key Mappings === {{
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 nnoremap <leader>s :up<cr>
@@ -307,8 +304,10 @@ nnoremap <silent> K :call <SID>show_documentation()<CR>
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
   else
-    call CocAction('doHover')
+    execute '!' . &keywordprg . " " . expand('<cword>')
   endif
 endfunction
 
@@ -324,8 +323,6 @@ nmap <leader>=  <Plug>(coc-format-selected)
 
 augroup mygroup
   autocmd!
-  " Setup formatexpr specified filetype(s).
-  autocmd FileType scala setl formatexpr=CocAction('formatSelected')
   " Update signature help on jump placeholder
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end

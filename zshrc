@@ -6,6 +6,7 @@ ZSH_THEME="spaceship"
 export SPACESHIP_TIME_SHOW=true
 export SPACESHIP_VI_MODE_SHOW=true
 export SPACESHIP_BATTERY_SHOW=false
+export SPACESHIP_HG_SHOW=false
 
 # Configuration for OhMyZSH plugins
 # =============================================================================
@@ -46,6 +47,7 @@ export SBT_HOME="$HOME/opt/sbt"
 export GO_HOME="$HOME/opt/go"
 export COURSIER_INSTALL="$HOME/.local/share/coursier/bin"
 export RACKET_HOME="$HOME/opt/racket"
+export CLOJURE_HOME="$HOME/opt/clojure"
 
 # Path definition
 # =============================================================================
@@ -56,6 +58,7 @@ export PATH="$SCALA_HOME/bin:$PATH"
 export PATH="$COURSIER_INSTALL:$PATH"
 export PATH="$GO_HOME/bin:$PATH"
 export PATH="$RACKET_HOME/bin:$PATH"
+export PATH="$CLOJURE_HOME/bin:$PATH"
 export PATH="$HOME/bin:$PATH"
 
 # Alias configuration
